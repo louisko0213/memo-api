@@ -1,7 +1,7 @@
 const db = require('../db/db');
 
 const getMemoData = (req, res) => {
-    db.query('SELECT * FROM memoTable ORDER BY time desc',
+    db.query('SELECT * FROM memo ORDER BY date desc',
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -15,7 +15,7 @@ const getMemoDataById = (req, res) => {
     const id = req.params.id;
 
     db.query(
-        'SELECT * FROM memoTable WHERE id = ?',
+        'SELECT * FROM memo WHERE id = ?',
         id,
         (err, result) => {
             if (err) {
@@ -34,7 +34,7 @@ const createMemo = (req, res) => {
     const password = req.body.password;
 
     db.query(
-        'INSERT INTO memoTable (title, content, time, password) VALUES (?,?,?,?)',
+        'INSERT INTO memo (title, content, date, password) VALUES (?,?,?,?)',
         [title, content, date, password],
         (err, result) => {
             if (err) {
@@ -54,7 +54,7 @@ const updateMemo = (req, res) => {
     const password = req.body.password;
 
     db.query(
-        `UPDATE memoTable SET title = ?, content = ?, time = ?, password = ? WHERE id = ${id}`,
+        `UPDATE memo SET title = ?, content = ?, date = ?, password = ? WHERE id = ${id}`,
         [title, content, date, password],
         (err, result) => {
             if (err) {
@@ -70,7 +70,7 @@ const deleteMemo = (req, res) => {
     const id = req.params.id;
 
     db.query(
-        'DELETE FROM memoTable WHERE id = ?',
+        'DELETE FROM memo WHERE id = ?',
         id,
         (err, result) => {
             if (err) {
@@ -87,7 +87,7 @@ const checkMemoPassword = (req, res) => {
     const password = req.query.password;
 
     db.query(
-        `SELECT password FROM memoTable WHERE id = ${id}`,
+        `SELECT password FROM memo WHERE id = ${id}`,
         (err, result) => {
             if (err) {
                 console.log(err);
