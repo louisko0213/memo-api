@@ -8,7 +8,9 @@ const getMemoData = (req, res) => {
             } else {
                 res.send(result);
             }
-        })
+        }
+    )
+    db.end();
 }
 
 const getMemoDataById = (req, res) => {
@@ -25,6 +27,7 @@ const getMemoDataById = (req, res) => {
             }
         }
     )
+    db.end();
 }
 
 const createMemo = (req, res) => {
@@ -44,6 +47,7 @@ const createMemo = (req, res) => {
             }
         }
     )
+    db.end();
 }
 
 const updateMemo = (req, res) => {
@@ -64,6 +68,7 @@ const updateMemo = (req, res) => {
             }
         }
     )
+    db.end();
 }
 
 const deleteMemo = (req, res) => {
@@ -80,6 +85,7 @@ const deleteMemo = (req, res) => {
             }
         }
     )
+    db.end();
 }
 
 const checkMemoPassword = (req, res) => {
@@ -96,6 +102,7 @@ const checkMemoPassword = (req, res) => {
             }
         }
     )
+    db.end();
 }
 
 
