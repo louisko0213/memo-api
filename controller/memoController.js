@@ -1,7 +1,7 @@
 const db = require('../db/db');
 
-const getMemoData = (req, res) => {
-    db.query('SELECT * FROM memo ORDER BY date desc',
+const getMemoData = async (req, res) => {
+    await db.query('SELECT * FROM memo ORDER BY date desc',
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -10,7 +10,6 @@ const getMemoData = (req, res) => {
             }
         }
     )
-    db.end();
 }
 
 const getMemoDataById = (req, res) => {
@@ -27,7 +26,6 @@ const getMemoDataById = (req, res) => {
             }
         }
     )
-    db.end();
 }
 
 const createMemo = (req, res) => {
@@ -47,7 +45,6 @@ const createMemo = (req, res) => {
             }
         }
     )
-    db.end();
 }
 
 const updateMemo = (req, res) => {
@@ -68,7 +65,6 @@ const updateMemo = (req, res) => {
             }
         }
     )
-    db.end();
 }
 
 const deleteMemo = (req, res) => {
@@ -85,14 +81,13 @@ const deleteMemo = (req, res) => {
             }
         }
     )
-    db.end();
 }
 
-const checkMemoPassword = (req, res) => {
+const checkMemoPassword = async (req, res) => {
     const id = req.params.id;
     const password = req.query.password;
 
-    db.query(
+    await db.query(
         `SELECT password FROM memo WHERE id = ${id}`,
         (err, result) => {
             if (err) {
@@ -102,9 +97,7 @@ const checkMemoPassword = (req, res) => {
             }
         }
     )
-    db.end();
 }
-
 
 module.exports = {
     getMemoData,

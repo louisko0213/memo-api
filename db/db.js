@@ -9,20 +9,14 @@ const mysql_config = {
 
 const db = mysql.createConnection(mysql_config);
 
-// const disconnect_handler = () => {
-//     const conn = mysql.createConnection(mysql_config);
-//     conn.connect(err => {
-//         (err) && setTimeout('disconnect_handler', 2000);
-//     });
+db.connect(error => {
+    if (error) console.log('db error', error);
+    console.log('Successfully connect to database!');
+});
 
-//     conn.on('error', err => {
-//         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-//             disconnect_handler();
-//         } else {
-//             throw err;
-//         }
-//     });
-//     exports.conn = conn;
-// };
+setInterval(() => {
+    db.query('SELECT 1');
+    console.log('Database is ok!');
+}, 5000);
 
 module.exports = db;
