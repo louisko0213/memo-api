@@ -1,5 +1,12 @@
 const mysql = require('mysql');
 
+// const mysql_config = {
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'memoSystem'
+// };
+
 const mysql_config = {
     host: 'us-cdbr-east-06.cleardb.net',
     user: 'bcf2bf5a93ec0c',
